@@ -7,7 +7,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Cretaceous",
       "fact": "First discovered in 1889 by Othniel Charles Marsh",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Tyrannosaurus Rex",
@@ -17,7 +17,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Cretaceous",
       "fact": "The largest known skull measures in at 5 feet long.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Anklyosaurus",
@@ -27,7 +27,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Cretaceous",
       "fact": "Anklyosaurus survived for approximately 135 million years.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Brachiosaurus",
@@ -37,7 +37,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Jurasic",
       "fact": "An asteroid was named 9954 Brachiosaurus in 1991.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Stegosaurus",
@@ -47,7 +47,7 @@ let dinoLibrary = [
       "where": "North America, Europe, Asia",
       "when": "Late Jurasic to Early Cretaceous",
       "fact": "The Stegosaurus had between 17 and 22 seperate places and flat spines.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Elasmosaurus",
@@ -57,7 +57,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Cretaceous",
       "fact": "Elasmosaurus was a marine reptile first discovered in Kansas.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Pteranodon",
@@ -67,7 +67,7 @@ let dinoLibrary = [
       "where": "North America",
       "when": "Late Cretaceous",
       "fact": "Actually a flying reptile, the Pteranodon is not a dinosaur.",
-      "comparison": []
+      "comparison": [],
   },
   {
       "species": "Pigeon",
@@ -77,7 +77,7 @@ let dinoLibrary = [
       "where": "World Wide",
       "when": "Holocene",
       "fact": "All birds are living dinosaurs.",
-      "comparison": []
+      "comparison": [],
   }
 ]
 
@@ -169,7 +169,7 @@ compareDiet = (dinosaur) => {
 
     if (human.diet === dinosaur.diet) {
       dinosaur.comparison.push(`you have the same diet as the ${dinosaur.species}`);
-  } else { dinosaur.comparison.push(`you are an ${human.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`);
+  } else { dinosaur[comparison].push(`you are an ${human.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`);
 }
 }
 
@@ -181,7 +181,7 @@ compareDiet = (dinosaur) => {
 
 // Generate Tiles for each Dino in Array
 
-var ranNums = [];
+var randomDinos = [];
 
 function randomArray () {
 
@@ -191,36 +191,49 @@ j = 0;
 
 while (i--) {
 j = Math.floor(Math.random() * (i+1));
-  ranNums.push(baseArray[j]);
+  randomDinos.push(baseArray[j]);
   baseArray.splice(j,1);
 } 
-return ranNums;
+return randomDinos;
 }
 
-// retrieve single tile from random array
+// Random property function
 
-function retrieveTile () {
-return randomArray();
-}
+
+
+
+// create tiles and add to DOM
+
 
 
 
 // Add tiles to DOM
 
-/*push tiles to DOM with three properties
+//push tiles to DOM with three properties
 
-var tile = document.createElement("DIV");                 // Create a <div> node
-var textnode = document.createTextNode("Dinosaur");         // Create a text node
-tile.appendChild(textnode); 
+randomArray();
+
+var grid = document.createElement('div');              
+var name = document.createElement('h3');
+var fact = document.createElement('p');
+var img = document.createElement('img');
+
+name.innerHTML = 'nathan';
+fact.innerHTML = 'is cool';
+img.src = `images/triceratops.png`;
+
+document.grid.appendChild(name);
+document.grid.appendChild(fact);
+document.grid.appendChild(img); 
 
 function displayTiles () {
-randomArray();
 for (let i = 0; i < 9; i++) {
-  document.getElementById('grid').appendChild(tile);
+  document.getElementById('grid').appendChild(grid);
 }
 }
 
-*/
+
+
 
 
 
@@ -238,9 +251,13 @@ document.getElementById("btn").addEventListener("click", hideForm);
 
 document.getElementById("btn").addEventListener("click", displayGrid);
 
+
+
 function displayGrid() {
   document.getElementById("grid").style.display = "flex";
 }
 
+document.getElementById("btn").addEventListener("click", displayTiles);
 
-document.getElementById("btn").addEventListener("click", compareDiet);
+
+
