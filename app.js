@@ -145,7 +145,7 @@ compareHeight = (dinosaur) => {
   } else { dinosaur.comparison.push(`you are ${humanHeight - dinosaur.height} inches taller than the ${dinosaur.species}`)
 }
 }
-// Create Dino Compare Method 1
+// Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches. 
 
 
@@ -160,8 +160,9 @@ compareWeight = (dinosaur) => {
 }
 }
 
-// Create Dino Compare Method 2
+// Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
+
 
 
 
@@ -172,14 +173,11 @@ compareDiet = (dinosaur) => {
   } else { dinosaur[comparison].push(`you are an ${human.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`);
 }
 }
-
-
-// Create Dino Compare Method 3
-// NOTE: Weight in JSON file is in lbs, height in inches.
+ 
 
 
 
-// Generate Tiles for each Dino in Array
+// Generate Random Array of Dinos
 
 var randomDinos = [];
 
@@ -197,7 +195,9 @@ j = Math.floor(Math.random() * (i+1));
 return randomDinos;
 }
 
-// Random property function
+// Generate Tiles for each Dino in Array
+
+
 
 
 
@@ -212,38 +212,66 @@ return randomDinos;
 //push tiles to DOM with three properties
 
 randomArray();
-   
-function displayTiles () {
-for (let i = 0; i < 9; i++) {
-  let gridItem = document.createElement('grid-item');
-  document.getElementById('grid').appendChild(gridItem);
+
+let tile = document.createElement('div');
+let gridItem = document.createElement('div');
+let grid = document.querySelector('#grid');
+let name = document.createElement('h3');
+let fact = document.createElement('p');
+let image = document.createElement('img');
+
+tile.classList.add('grid-item');
+
+
+ 
+//create tiles from randomArray();
+
+function createTiles() {
+  randomDinos.map( function (dinosaur) {
+    name.innerHTML = dinosaur.species;
+    fact.innerHTML = dinosaur.fact;
+    image.src = `images/${dinosaur.species}.png`
+  })
+  return randomDinos
 }
+
+function displayTiles () {
+  document.getElementById("grid").innerHTML = createTiles();
 }
 
 
 /*
 function displayTiles () {
-for (let i = 0; i < 9; i++) {
-  document.getElementById('grid').appendChild(grid);
+for (let i = 0; i < randomDinos.length; i++) {
+  
+  name.innerHTML = randomDinos[i].species;
+  fact.innerHTML = randomDinos[i].fact;
+  image.src = `images/${randomDinos[i].species}.png`
+  }
+  grid.appendChild(tile);
+  tile.appendChild(name);
+  tile.appendChild(fact);
+  tile.appendChild(image);
 }
-}
-*/
 
+*/
 
 
 // Remove form from screen
 
+document.getElementById("btn").addEventListener("click", () => {
+ hideForm();
+ displayGrid();
+ displayTiles();
+});
+
+
 function hideForm() {
-  document.getElementsByClassName("form-container")[0].style.visibility = "hidden";
+  document.getElementsByClassName("form-container")[0].style.display = "none";
 }
-
-document.getElementById("btn").addEventListener("click", hideForm);
-
 
 
 // On button click, prepare and display infographic
-
-document.getElementById("btn").addEventListener("click", displayGrid);
 
 
 
@@ -251,7 +279,7 @@ function displayGrid() {
   document.getElementById("grid").style.display = "flex";
 }
 
-document.getElementById("btn").addEventListener("click", displayTiles);
+
 
 
 
