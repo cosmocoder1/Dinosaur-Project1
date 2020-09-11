@@ -212,28 +212,22 @@ return randomDinos;
 //push tiles to DOM with three properties
 
 randomArray();
+   
+function displayTiles () {
+for (let i = 0; i < 9; i++) {
+  let gridItem = document.createElement('grid-item');
+  document.getElementById('grid').appendChild(gridItem);
+}
+}
 
-var grid = document.createElement('div');              
-var name = document.createElement('h3');
-var fact = document.createElement('p');
-var img = document.createElement('img');
 
-name.innerHTML = 'nathan';
-fact.innerHTML = 'is cool';
-img.src = `images/triceratops.png`;
-
-document.grid.appendChild(name);
-document.grid.appendChild(fact);
-document.grid.appendChild(img); 
-
+/*
 function displayTiles () {
 for (let i = 0; i < 9; i++) {
   document.getElementById('grid').appendChild(grid);
 }
 }
-
-
-
+*/
 
 
 
