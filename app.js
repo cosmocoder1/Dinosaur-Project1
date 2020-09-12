@@ -195,66 +195,37 @@ j = Math.floor(Math.random() * (i+1));
 return randomDinos;
 }
 
+
+
 // Generate Tiles for each Dino in Array
-
-
-
-
-
-
-// create tiles and add to DOM
-
-
-
-
-// Add tiles to DOM
-
-//push tiles to DOM with three properties
 
 randomArray();
 
-let tile = document.createElement('div');
-let gridItem = document.createElement('div');
-let grid = document.querySelector('#grid');
-let name = document.createElement('h3');
-let fact = document.createElement('p');
-let image = document.createElement('img');
+function generateTile (i) {
+  let tile = document.createElement('div');
+  let name = document.createElement('h3');
+  let fact = document.createElement('p');
+  let image = document.createElement('img');
+  tile.classList.add('grid-item');
 
-tile.classList.add('grid-item');
-
-
- 
-//create tiles from randomArray();
-
-function createTiles() {
-  randomDinos.map( function (dinosaur) {
-    name.innerHTML = dinosaur.species;
-    fact.innerHTML = dinosaur.fact;
-    image.src = `images/${dinosaur.species}.png`
-  })
-  return randomDinos
-}
-
-function displayTiles () {
-  document.getElementById("grid").innerHTML = createTiles();
-}
-
-
-/*
-function displayTiles () {
-for (let i = 0; i < randomDinos.length; i++) {
-  
   name.innerHTML = randomDinos[i].species;
   fact.innerHTML = randomDinos[i].fact;
   image.src = `images/${randomDinos[i].species}.png`
-  }
-  grid.appendChild(tile);
+
   tile.appendChild(name);
   tile.appendChild(fact);
   tile.appendChild(image);
+  return tile;
+ 
 }
 
-*/
+function displayTiles () {
+  for (let i = 0; i < 9; i++) {
+    let tile = generateTile (i);
+    grid.appendChild(tile);
+  }
+}
+
 
 
 // Remove form from screen
@@ -265,14 +236,11 @@ document.getElementById("btn").addEventListener("click", () => {
  displayTiles();
 });
 
-
 function hideForm() {
   document.getElementsByClassName("form-container")[0].style.display = "none";
 }
 
-
 // On button click, prepare and display infographic
-
 
 
 function displayGrid() {
