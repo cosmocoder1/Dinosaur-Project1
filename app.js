@@ -112,11 +112,21 @@ let Pigeon = new DinoConstructor(7);
 
 // Create Human Object
 
-const humanObject = {};
+let humanObject = {
+
+  
+
+  name: document.getElementById("name").value,
+  feet: document.getElementById("feet").value,
+  inches: document.getElementById("inches").value,
+  weight: document.getElementById("weight").value,
+  diet: document.getElementById("diet").value,
+  species: 'human',
+}; 
   
 // Use IIFE to get human data from form
 
-let getHumanData = (function (name, feet, inches, weight, diet) {
+(function getHumanData (name, feet, inches, weight, diet) {
 return {
   name: document.getElementById("name").value,
   feet: document.getElementById("feet").value,
@@ -130,7 +140,7 @@ return {
 
 
 
-  // Create Dino Compare Method 1
+// Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
 
   
@@ -197,7 +207,7 @@ return randomDinos;
 //Add human tile to 5th position in array
 
  randomArray();
- randomDinos.splice(4, 0, getHumanData);
+ randomDinos.splice(4, 0, humanObject);
 console.log(randomDinos);
 
 
@@ -206,11 +216,13 @@ console.log(randomDinos);
 
 
 const generateTile = (i) => {
+
   let tile = document.createElement('div');
   let name = document.createElement('h3');
   let fact = document.createElement('p');
   let image = document.createElement('img');
   tile.classList.add('grid-item');
+
 
   name.innerHTML = randomDinos[i].species;
   fact.innerHTML = randomDinos[i].fact;
@@ -220,7 +232,7 @@ const generateTile = (i) => {
   tile.appendChild(fact);
   tile.appendChild(image);
   return tile;
- 
+  
 }
 
 const displayTiles = () => {
