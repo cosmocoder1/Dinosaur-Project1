@@ -83,8 +83,6 @@ let dinoLibrary = [
 
 // Create Dino Constructor
 
-
-
 function DinoConstructor (i) {
 
   this.species = dinoLibrary[i].species;
@@ -99,7 +97,6 @@ function DinoConstructor (i) {
 }
 
 
-
 // Create Dino Objects
 
 let Triceratops = new DinoConstructor(0);
@@ -112,9 +109,11 @@ let Pteranodon = new DinoConstructor(6);
 let Pigeon = new DinoConstructor(7);
 
 
+
 // Create Human Object
 
-
+const humanObject = {};
+  
 // Use IIFE to get human data from form
 
 let getHumanData = (function (name, feet, inches, weight, diet) {
@@ -128,11 +127,11 @@ return {
 }
 )();
 
-let human = getHumanData
+
+
 
   // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
-
 
   
 compareHeight = (dinosaur) => {
@@ -140,24 +139,24 @@ compareHeight = (dinosaur) => {
   let humanHeight = (human.feet * 12) + human.inches;
     if (humanHeight === dinosaur.height) {
       dinosaur.comparison.push(`you are the same height as the ${dinosaur.species}`);
-  } else if (humanHeight < dinosaur.height) {
-  dinosaur.comparison.push(`you are ${dinosaur.height - humanHeight} inches shorter than the ${dinosaur.species}`)
-  } else { dinosaur.comparison.push(`you are ${humanHeight - dinosaur.height} inches taller than the ${dinosaur.species}`)
+    } else if (humanHeight < dinosaur.height) {
+      dinosaur.comparison.push(`you are ${dinosaur.height - humanHeight} inches shorter than the ${dinosaur.species}`)
+    } else { dinosaur.comparison.push(`you are ${humanHeight - dinosaur.height} inches taller than the ${dinosaur.species}`)
+  }
 }
-}
+
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches. 
-
 
 
 compareWeight = (dinosaur) => {
 
     if (human.weight === dinosaur.weight) {
       dinosaur.comparison.push(`you are the same weight as the ${dinosaur.species}`);
-  } else if (human.weight < dinosaur.weight) {
+    } else if (human.weight < dinosaur.weight) {
       dinosaur.comparison.push(`you weigh ${dinosaur.weight - human.weight} lbs less than the ${dinosaur.species}`)
-  } else { dinosaur.comparison.push(`you weigh ${human.weight - dinosaur.weight} lbs more than the ${dinosaur.species}`)
-}
+    } else { dinosaur.comparison.push(`you weigh ${human.weight - dinosaur.weight} lbs more than the ${dinosaur.species}`)
+  }
 }
 
 // Create Dino Compare Method 3
@@ -170,18 +169,17 @@ compareDiet = (dinosaur) => {
 
     if (human.diet === dinosaur.diet) {
       dinosaur.comparison.push(`you have the same diet as the ${dinosaur.species}`);
-  } else { dinosaur[comparison].push(`you are an ${human.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`);
-}
+    } else { dinosaur[comparison].push(`you are an ${human.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`);
+  }
 }
  
-
 
 
 // Generate Random Array of Dinos
 
 var randomDinos = [];
 
-function randomArray () {
+const randomArray = () => {
 
 const baseArray = [Triceratops, Tyrannosaurus, Anklyosaurus, Brachiosaurus, Stegosaurus, Elasmosaurus, Pteranodon, Pigeon];
 i = baseArray.length;
@@ -190,18 +188,24 @@ j = 0;
 while (i--) {
 j = Math.floor(Math.random() * (i+1));
   randomDinos.push(baseArray[j]);
-  baseArray.splice(j,1);
+  baseArray.splice(j, 1);
 } 
+
 return randomDinos;
 }
 
+//Add human tile to 5th position in array
+
+ randomArray();
+ randomDinos.splice(4, 0, getHumanData);
+console.log(randomDinos);
 
 
 // Generate Tiles for each Dino in Array
 
-randomArray();
 
-function generateTile (i) {
+
+const generateTile = (i) => {
   let tile = document.createElement('div');
   let name = document.createElement('h3');
   let fact = document.createElement('p');
@@ -219,7 +223,7 @@ function generateTile (i) {
  
 }
 
-function displayTiles () {
+const displayTiles = () => {
   for (let i = 0; i < 9; i++) {
     let tile = generateTile (i);
     grid.appendChild(tile);
@@ -234,6 +238,7 @@ document.getElementById("btn").addEventListener("click", () => {
  hideForm();
  displayGrid();
  displayTiles();
+ getHumanData();
 });
 
 function hideForm() {
