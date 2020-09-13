@@ -114,14 +114,13 @@ let Pigeon = new DinoConstructor(7);
 
 let humanObject = {
 
-  
-
-  name: document.getElementById("name").value,
+  name: 'Nathan',
   feet: document.getElementById("feet").value,
   inches: document.getElementById("inches").value,
   weight: document.getElementById("weight").value,
   diet: document.getElementById("diet").value,
   species: 'human',
+
 }; 
   
 // Use IIFE to get human data from form
@@ -204,6 +203,7 @@ j = Math.floor(Math.random() * (i+1));
 return randomDinos;
 }
 
+
 //Add human tile to 5th position in array
 
  randomArray();
@@ -214,6 +214,44 @@ console.log(randomDinos);
 // Generate Tiles for each Dino in Array
 
 
+const generateTile = (i) => {
+
+  let tile = document.createElement('div');
+  let name = document.createElement('h3');
+  let fact = document.createElement('p');
+  let image = document.createElement('img');
+  tile.classList.add('grid-item');
+
+  if (randomDinos[i].species === 'human') {
+    name.innerHTML = randomDinos[i].name;
+    image.src = `images/${randomDinos[i].species}.png`;
+
+    tile.appendChild(name);
+    tile.appendChild(fact);
+    tile.appendChild(image);
+  return tile;
+  } else {
+
+  name.innerHTML = randomDinos[i].species;
+  fact.innerHTML = randomDinos[i].fact;
+  image.src = `images/${randomDinos[i].species}.png`
+
+  tile.appendChild(name);
+  tile.appendChild(fact);
+  tile.appendChild(image);
+  return tile;
+  }
+}
+
+const displayTiles = () => {
+  for (let i = 0; i < 9; i++) {
+    let tile = generateTile (i);
+    grid.appendChild(tile);
+  }
+}
+
+
+/*
 
 const generateTile = (i) => {
 
@@ -242,7 +280,7 @@ const displayTiles = () => {
   }
 }
 
-
+*/
 
 // Remove form from screen
 
