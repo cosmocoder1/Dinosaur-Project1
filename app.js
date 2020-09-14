@@ -112,32 +112,40 @@ let Pigeon = new DinoConstructor(7);
 
 // Create Human Object
 
-let humanObject = {
+let humanObject = {}; 
 
-  name: 'Nathan',
-  feet: document.getElementById("feet").value,
-  inches: document.getElementById("inches").value,
-  weight: document.getElementById("weight").value,
-  diet: document.getElementById("diet").value,
-  species: 'human',
-
-}; 
   
 // Use IIFE to get human data from form
 
-(function getHumanData (name, feet, inches, weight, diet) {
-return {
-  name: document.getElementById("name").value,
-  feet: document.getElementById("feet").value,
-  inches: document.getElementById("inches").value,
-  weight: document.getElementById("weight").value,
-  diet: document.getElementById("diet").value,
-  }
+
+(function getHumanData () {
+ 
+  let name = document.getElementById("name").value;
+  let feet = Number(document.getElementById("feet").value);
+  let inches = Number(document.getElementById("inches").value);
+  let weight = document.getElementById("weight").value;
+  let diet = document.getElementById("diet").value;
+  let species = 'human'
+  return humanObject = {name, feet, inches, weight, diet, species};
 }
 )();
 
 
+/*
 
+(function getHumanData () {
+ 
+  let name = document.getElementById("name").value;
+  let feet = Number(document.getElementById("feet").value);
+  let inches = Number(document.getElementById("inches").value);
+  let weight = document.getElementById("weight").value;
+  let diet = document.getElementById("diet").value;
+  let species = 'human'
+
+  return humanObject = {name, feet, inches, weight, diet, species};
+}
+)();
+*/
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -222,6 +230,7 @@ const generateTile = (i) => {
   let image = document.createElement('img');
   tile.classList.add('grid-item');
 
+
   if (randomDinos[i].species === 'human') {
     name.innerHTML = randomDinos[i].name;
     image.src = `images/${randomDinos[i].species}.png`;
@@ -291,6 +300,8 @@ document.getElementById("btn").addEventListener("click", () => {
  getHumanData();
 });
 
+document.getElementById("btn").addEventListener('submit', () => {getHumanData()});
+
 function hideForm() {
   document.getElementsByClassName("form-container")[0].style.display = "none";
 }
@@ -301,6 +312,7 @@ function hideForm() {
 function displayGrid() {
   document.getElementById("grid").style.display = "flex";
 }
+
 
 
 
