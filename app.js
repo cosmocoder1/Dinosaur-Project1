@@ -118,17 +118,19 @@ let humanObject = {};
 // Use IIFE to get human data from form
 
 
-(function getHumanData () {
+function getHumanData () {
  
-  let name = document.getElementById("name").value;
-  let feet = Number(document.getElementById("feet").value);
-  let inches = Number(document.getElementById("inches").value);
-  let weight = document.getElementById("weight").value;
-  let diet = document.getElementById("diet").value;
-  let species = 'human'
+  humanObject.name = document.form.name.value;
+  humanObject.feet = document.form.feet.value;
+  humanObject.inches = document.form.inches.value;
+  humanObject.weight = document.form.weight.value;
+  humanObject.diet = document.form.diet.value;
+  humanObject.species = 'human';
   return humanObject = {name, feet, inches, weight, diet, species};
-}
-)();
+
+};
+
+
 
 
 /*
@@ -146,6 +148,8 @@ let humanObject = {};
 }
 )();
 */
+
+
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches. 
@@ -260,36 +264,7 @@ const displayTiles = () => {
 }
 
 
-/*
 
-const generateTile = (i) => {
-
-  let tile = document.createElement('div');
-  let name = document.createElement('h3');
-  let fact = document.createElement('p');
-  let image = document.createElement('img');
-  tile.classList.add('grid-item');
-
-
-  name.innerHTML = randomDinos[i].species;
-  fact.innerHTML = randomDinos[i].fact;
-  image.src = `images/${randomDinos[i].species}.png`
-
-  tile.appendChild(name);
-  tile.appendChild(fact);
-  tile.appendChild(image);
-  return tile;
-  
-}
-
-const displayTiles = () => {
-  for (let i = 0; i < 9; i++) {
-    let tile = generateTile (i);
-    grid.appendChild(tile);
-  }
-}
-
-*/
 
 // Remove form from screen
 
@@ -305,6 +280,8 @@ document.getElementById("btn").addEventListener('submit', () => {getHumanData()}
 function hideForm() {
   document.getElementsByClassName("form-container")[0].style.display = "none";
 }
+
+
 
 // On button click, prepare and display infographic
 
