@@ -126,7 +126,7 @@ function getHumanData () {
   humanObject.weight = document.form.weight.value;
   humanObject.diet = document.form.diet.value;
   humanObject.species = 'human';
-  return humanObject = {name, feet, inches, weight, diet, species};
+  return humanObject = {name, feet, inches, weight, diet};
 
 };
 
@@ -218,9 +218,9 @@ return randomDinos;
 
 //Add human tile to 5th position in array
 
- randomArray();
+randomArray();
  randomDinos.splice(4, 0, humanObject);
-console.log(randomDinos);
+
 
 
 // Generate Tiles for each Dino in Array
@@ -270,9 +270,9 @@ const displayTiles = () => {
 
 document.getElementById("btn").addEventListener("click", () => {
  hideForm();
+ getHumanData();
  displayGrid();
  displayTiles();
- getHumanData();
 });
 
 document.getElementById("btn").addEventListener('submit', () => {getHumanData()});
