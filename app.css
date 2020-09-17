@@ -70,6 +70,7 @@ p {
 
 .grid-item:nth-child(5){
     background: #67a866f9;
+    overflow: scroll;
 }
 
 .grid-item:nth-child(6){
