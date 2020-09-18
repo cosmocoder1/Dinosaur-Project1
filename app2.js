@@ -93,6 +93,46 @@ function DinoConstructor(i) {
   this.when = dinoLibrary[i].when;
   this.fact = dinoLibrary[i].fact;
   this.comparison = dinoLibrary[i].comparison;
+
+  this.compareDiet = () => {
+    if (humanObject.diet === this.diet) {
+      return `You have the same diet as the ${this.species}`;
+    } else {
+      return `You are a ${humanObject.diet} and the ${this.species} is a ${this.diet}`;
+    }
+  };
+
+  this.compareHeight = () => {
+    let humanHeight = humanObject.feet + humanObject.inches;
+    if (humanHeight === this.height) {
+      return `You are the same height as the ${this.species}`;
+    } else if (humanHeight < this.height) {
+      return `You are ${
+        this.height - humanHeight
+      } inches shorter than the ${this.species}`;
+    } else {
+      return `You are ${
+        humanHeight - this.height
+      } inches taller than the ${this.species}`;
+    }
+  };
+
+  this.compareWeight = () => {
+    if (humanObject.weight === this.weight) {
+      return `You are the same weight as the ${this.species}`;
+    } else if (humanObject.weight < this.weight) {
+      return `You weigh ${
+        this.weight - humanObject.weight
+      } lbs less than the ${this.species}`;
+    } else {
+      return `You weigh ${
+        humanObject.weight - this.weight
+      } lbs more than the ${this.species}!`;
+    }
+  };
+
+
+
 }
 
 // create Dino Objects
@@ -124,16 +164,9 @@ const getHumanData = () => {
 
 // create Dino Compare Method 1
 
-DinoConstructor.prototype.compareDiet = () => {
-  if (humanObject.diet === this.diet) {
-    return `You have the same diet as the ${this.species}`;
-  } else {
-    return `You are a ${humanObject.diet} and the ${this.species} is a ${this.diet}`;
-  }
-};
 
 // create Dino Compare Method 2
-
+/*
 DinoConstructor.prototype.compareHeight = () => {
   let humanHeight = humanObject.feet + humanObject.inches;
   if (humanHeight === this.height) {
@@ -164,6 +197,9 @@ DinoConstructor.prototype.compareWeight = () => {
     } lbs more than the ${this.species}!`;
   }
 };
+*/
+
+
 
 // generate Random Array of Dinosaurs
 
@@ -198,6 +234,7 @@ const randomArray = () => {
 randomArray();
 randomDinos.splice(4, 0, humanObject);
 
+
 // Generate Tiles for each Dino in Array
 
 const generateTile = (i) => {
@@ -222,9 +259,7 @@ const generateTile = (i) => {
 
     // pigeon tile parameters
   } else if (randomDinos[i].species === "Pigeon") {
-    /*
-    randomDinos[i].compareDiet('Pigeon');
-    */
+
     name.innerHTML = randomDinos[i].species;
     fact.innerHTML = randomDinos[i].fact;
     comparison.innerHTML = randomDinos[i].compareDiet();
@@ -232,9 +267,9 @@ const generateTile = (i) => {
 
 
     tile.appendChild(name);
-    tile.appendChild(fact);
+    tile.appendChild(comparison);
     tile.appendChild(image);
-    fact.appendChild(comparison);
+  
 
     return tile;
 
@@ -251,7 +286,7 @@ const generateTile = (i) => {
     diet.innerHTML = randomDinos[i].diet;
     where.innerHTML = randomDinos[i].where;
     when.innerHTML = randomDinos[i].when;
-    comparison.innerHTML = randomDinos[i].comparison;
+    comparison.innerHTML = randomDinos[i].compareWeight();
 
     name.innerHTML = randomDinos[i].species;
     fact.innerHTML = randomDinos[i].fact;
@@ -260,7 +295,7 @@ const generateTile = (i) => {
     tile.appendChild(name);
 
     // random fact display conditionals
-
+/*
     let randomNumber = Math.floor(Math.random() * 4);
     if (randomNumber === 0) {
       tile.appendChild(height);
@@ -273,7 +308,8 @@ const generateTile = (i) => {
     } else if (randomNumber === 4) {
       tile.appendChild(when);
     }
-    fact.appendChild(comparison);
+    */
+    tile.appendChild(comparison);
     tile.appendChild(image);
   }
   return tile;
