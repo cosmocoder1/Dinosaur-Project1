@@ -164,26 +164,26 @@ const getHumanData = () => {
 
 // create Dino Compare Method 1
 
-
-// create Dino Compare Method 2
 /*
+// create Dino Compare Method 2
+
 DinoConstructor.prototype.compareHeight = () => {
   let humanHeight = humanObject.feet + humanObject.inches;
   if (humanHeight === this.height) {
-    this.comparison = `You are the same height as the ${this.species}`;
+    this.prototype.comparison = `You are the same height as the ${this.prototype.species}`;
   } else if (humanHeight < this.height) {
-    this.comparison = `You are ${
+    this.prototype.comparison = `You are ${
       this.height - humanHeight
-    } inches shorter than the ${this.species}`;
+    } inches shorter than the ${this.prototype.species}`;
   } else {
     this.comparison = `You are ${
       humanHeight - this.height
     } inches taller than the ${this.species}`;
   }
 };
-
+*/
 // create Dino Compare Method 3
-
+/*
 DinoConstructor.prototype.compareWeight = () => {
   if (humanObject.weight === this.dinosaur.weight) {
     this.comparison = `You are the same weight as the ${this.species}`;
@@ -262,12 +262,11 @@ const generateTile = (i) => {
 
     name.innerHTML = randomDinos[i].species;
     fact.innerHTML = randomDinos[i].fact;
-    comparison.innerHTML = randomDinos[i].compareDiet();
     image.src = `images/${randomDinos[i].species}.png`;
 
 
     tile.appendChild(name);
-    tile.appendChild(comparison);
+    tile.appendChild(fact);
     tile.appendChild(image);
   
 
@@ -295,7 +294,7 @@ const generateTile = (i) => {
     tile.appendChild(name);
 
     // random fact display conditionals
-/*
+
     let randomNumber = Math.floor(Math.random() * 4);
     if (randomNumber === 0) {
       tile.appendChild(height);
@@ -308,8 +307,7 @@ const generateTile = (i) => {
     } else if (randomNumber === 4) {
       tile.appendChild(when);
     }
-    */
-    tile.appendChild(comparison);
+    
     tile.appendChild(image);
   }
   return tile;
@@ -337,6 +335,16 @@ const randomMethodCall = () => {
 };
 */
 // remove form from screen
+
+// create mouseover behaviors for comparison displays
+
+
+const tile = document.querySelectorAll('.grid-item');
+
+tiles.forEach((tile) => {
+  if 
+  tile.addEventListener('mouseover')
+}) 
 
 function hideForm() {
   document.getElementsByClassName("form-container")[0].style.display = "none";
