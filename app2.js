@@ -1,5 +1,3 @@
-// JSON library moved into JS
-
 let dinoLibrary = [
   {
     species: "Triceratops",
@@ -121,51 +119,49 @@ const getHumanData = () => {
   humanObject.weight = document.form.weight.value;
   humanObject.diet = document.form.diet.value.toLowerCase();
   humanObject.species = "human";
-  humanObject.dietComparison = "";
-  humanObject.heightComparison2 = "";
-  humanObject.weightComparison3 = "";
+  
 };
 
 // create Dino Compare Method 1
 
-compareDiet = (dinosaur) => {
-  if (humanObject.diet === dinosaur.diet) {
-    humanObject.dietComparison = `You have the same diet as the ${dinosaur.species}`;
+DinoConstructor.prototype.compareDiet = () => {
+  if (humanObject.diet === this.diet) {
+    return `You have the same diet as the ${this.species}`;
   } else {
-    humanObject.dietComparison = `You are a ${humanObject.diet} and the ${dinosaur.species} is a ${dinosaur.diet}`;
+    return `You are a ${humanObject.diet} and the ${this.species} is a ${this.diet}`;
   }
 };
 
 // create Dino Compare Method 2
 
-compareHeight = (dinosaur) => {
+DinoConstructor.prototype.compareHeight = () => {
   let humanHeight = humanObject.feet + humanObject.inches;
-  if (humanHeight === dinosaur.height) {
-    humanObject.heightComparison = `You are the same height as the ${dinosaur.species}`;
-  } else if (humanHeight < dinosaur.height) {
-    humanObject.heightComparison = `You are ${
-      dinosaur.height - humanHeight
-    } inches shorter than the ${dinosaur.species}`;
+  if (humanHeight === this.height) {
+    this.comparison = `You are the same height as the ${this.species}`;
+  } else if (humanHeight < this.height) {
+    this.comparison = `You are ${
+      this.height - humanHeight
+    } inches shorter than the ${this.species}`;
   } else {
-    humanObject.heightComparison = `You are ${
-      humanHeight - dinosaur.height
-    } inches taller than the ${dinosaur.species}`;
+    this.comparison = `You are ${
+      humanHeight - this.height
+    } inches taller than the ${this.species}`;
   }
 };
 
 // create Dino Compare Method 3
 
-compareWeight = (dinosaur) => {
-  if (humanObject.weight === dinosaur.weight) {
-    humanObject.weightComparison = `You are the same weight as the ${dinosaur.species}`;
-  } else if (humanObject.weight < dinosaur.weight) {
-    humanObject.weightComparison = `You weigh ${
-      dinosaur.weight - humanObject.weight
-    } lbs less than the ${dinosaur.species}`;
+DinoConstructor.prototype.compareWeight = () => {
+  if (humanObject.weight === this.dinosaur.weight) {
+    this.comparison = `You are the same weight as the ${this.species}`;
+  } else if (humanObject.weight < this.weight) {
+    this.comparison = `You weigh ${
+      this.weight - humanObject.weight
+    } lbs less than the ${this.species}`;
   } else {
-    dinosaur.weightComparison = `You weigh ${
-      humanObject.weight - dinosaur.weight
-    } lbs more than the ${dinosaur.species}!`;
+    this.comparison = `You weigh ${
+      humanObject.weight - this.weight
+    } lbs more than the ${this.species}!`;
   }
 };
 
@@ -211,38 +207,34 @@ const generateTile = (i) => {
   let fact = document.createElement("p");
   let comparison = document.createElement("p");
   let image = document.createElement("img");
-  let dietComparison = randomDinos[i].dietComparison;
-  let heightComparison = randomDinos[i].heightComparison;
-  let weightComparison = randomDinos[i].weightComparison;
-
+  
   // human tile parameters
 
   if (randomDinos[i].species === "human") {
     name.innerHTML = randomDinos[i].name;
     image.src = `images/${randomDinos[i].species}.png`;
-    comparison.innerHTML =
-      dietComparison +
-      ".  " +
-      heightComparison +
-      " and " +
-      weightComparison +
-      "!";
 
     tile.appendChild(name);
     tile.appendChild(image);
-    tile.appendChild(comparison);
+  
 
     return tile;
 
     // pigeon tile parameters
   } else if (randomDinos[i].species === "Pigeon") {
+    /*
+    randomDinos[i].compareDiet('Pigeon');
+    */
     name.innerHTML = randomDinos[i].species;
     fact.innerHTML = randomDinos[i].fact;
+    comparison.innerHTML = randomDinos[i].compareDiet();
     image.src = `images/${randomDinos[i].species}.png`;
+
 
     tile.appendChild(name);
     tile.appendChild(fact);
     tile.appendChild(image);
+    fact.appendChild(comparison);
 
     return tile;
 
@@ -259,6 +251,7 @@ const generateTile = (i) => {
     diet.innerHTML = randomDinos[i].diet;
     where.innerHTML = randomDinos[i].where;
     when.innerHTML = randomDinos[i].when;
+    comparison.innerHTML = randomDinos[i].comparison;
 
     name.innerHTML = randomDinos[i].species;
     fact.innerHTML = randomDinos[i].fact;
@@ -280,6 +273,7 @@ const generateTile = (i) => {
     } else if (randomNumber === 4) {
       tile.appendChild(when);
     }
+    fact.appendChild(comparison);
     tile.appendChild(image);
   }
   return tile;
@@ -296,20 +290,16 @@ const displayTiles = () => {
 
 // select random dinosaur for comparison displays
 
-const comparisonSelector = () => {
-  let dinosaursOnly = [
-    Triceratops,
-    Tyrannosaurus,
-    Anklyosaurus,
-    Brachiosaurus,
-    Stegosaurus,
-    Elasmosaurus,
-    Pteranodon,
-    Pigeon,
-  ];
+/*
+const randomMethodCall = () => {
+  let randomNumber = Math.floor(Math.random() * 3);
+  if (randomNumber = 1) {
+    return 
+  }
+    
   return dinosaursOnly[Math.floor(Math.random() * 8)];
 };
-
+*/
 // remove form from screen
 
 function hideForm() {
@@ -327,9 +317,6 @@ function displayGrid() {
 document.getElementById("btn").addEventListener("click", () => {
   hideForm();
   getHumanData();
-  compareDiet(comparisonSelector());
-  compareHeight(comparisonSelector());
-  compareWeight(comparisonSelector());
   displayGrid();
   displayTiles();
 });
